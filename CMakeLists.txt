@@ -1,11 +1,15 @@
 cmake_minimum_required(VERSION 3.13)
 project(demo1)
 
-# 设置产生grpc代码
+# generate grpc -> c++ source
+# need bin/{linux,mac,win}/ has some plugin for platform
 
-# 设置lib
 
-# 设置include
+
+
+# setting other libaray
+
+# setting other source files for libaray
 
 
 

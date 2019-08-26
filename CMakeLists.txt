@@ -4,7 +4,7 @@ project(demo1)
 # generate grpc -> c++ source
 # need bin/{linux,mac,win}/ has some plugin for platform
 
-
+if ()
 
 
 # setting other libaray

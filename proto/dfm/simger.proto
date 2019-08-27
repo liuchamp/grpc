@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package dfm;
+
 service dmli {
   rpc Get(Finder) returns (FindInfos);
 }
@@ -9,5 +11,5 @@ message Finder {
 }
 
 message FindInfos {
-    repeated string  ss= 1;
+  repeated string ss = 1;
 }

@@ -1,0 +1,12 @@
+
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+service User {
+  rpc Create(UserInfoReq) returns (google.protobuf.Empty);
+}
+
+message UserInfoReq {
+  string name = 1;
+  string okd = 2;
+  int32 age = 3;
+}

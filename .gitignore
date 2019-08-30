@@ -2,3 +2,9 @@ cmake-build*
 .idea
 .vscode
 
+*.grpc.pb.cc
+*.grpc.pb.cpp
+*.grpc.pb.h
+*.pb.cc
+*.pb.cpp
+*.pb.h

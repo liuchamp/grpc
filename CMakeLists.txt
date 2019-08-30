@@ -1,23 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 project(demo1)
-
-file(GLOB PROTO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/proto/**/*.proto)
-
-foreach (p ${PROTO_FILE})
-    string(REPLACE "${PROJECT_SOURCE_DIR}/" "" smk ${p})
-    STRING(REGEX REPLACE "[^/]proto" "" proto_file_name ${smk})
-
-    message("s --> ${proto_file_name}")
-    list(APPEND PROTO_SRCS " ${proto_file_name}.pb.cc")
-    add_custom_command(
-            OUTPUT "${proto_file_name}.pb.h" "${proto_file_name}.pb.cc"
-            COMMAND protoc --proto_path=${CMAKE_CURRENT_SOURCE_DIR}/proto --cpp_out=${CMAKE_CURRENT_SOURCE_DIR}/main ${smk}
-            DEPENDS ${smk}
-    )
-endforeach (p)
-
-message(STATUS ${PROTO_SRCS})
-include_directories(proto)
+set(CMAKE_CXX_STANDARD 17)
+execute_process(COMMAND sh ${PROJECT_SOURCE_DIR}/gene.sh)
 if (Linux)
     # generate grpc -> c++ source
     # need bin/{linux,mac,win}/ has some plugin for platform
@@ -30,11 +14,23 @@ if (Linux)
 
 endif ()
 
+find_package(Protobuf REQUIRED)
+if (PROTOBUF_FOUND)
+    message(STATUS "PROTOBUF  library found")
+else ()
+    message(FATAL_ERROR "protobuf library is needed but cant be found")
+endif ()
 
-set(CMAKE_CXX_STANDARD 17)
+
 enable_testing()
 add_subdirectory(src/test)
-
 aux_source_directory(src/main DIR_SRCS)
 
+
 add_executable(demo1 ${DIR_SRCS})
+
+# arg1, proto 目录默认就是。 arg2,产生条件
+
+function(genareter arg)
+
+endfunction()
